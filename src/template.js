@@ -1,9 +1,5 @@
-const { writeFile } = require('fs').promises;
-
-
-
-const generateHTML = ({ role, name, id, email, github, school }) =>
-    `<!DOCTYPE html>
+const generateHTML = function () {
+    return `<!DOCTYPE html>
     <html lang="en">
     <head>
       <meta charset="UTF-8">
@@ -21,15 +17,23 @@ const generateHTML = ({ role, name, id, email, github, school }) =>
     </head>
     <body>
     </body>
-</html>`;
+</html>`
+}
 
-// Bonus using writeFileSync as a promise
-const init = () => {
-    promptUser()
+const initCard = function (arr) {
+    //if else statement
+    let role;
 
-        .then((answers) => writeFile('index.html', generateHTML(answers)))
-        .then(() => console.log('Successfully wrote to index.html'))
-        .catch((err) => console.error(err));
-};
+    if (arr.title === "Manager") {
+        role = `Office Number: ${arr.officenumber}`
+    } else if (arr.title === "Engineer") {
+        role = `Github: ${arr.github}`
+    } else if (arr.title === "Intern") {
+        role = `School: ${arr.school}`
+    }
 
-init();
+
+
+}
+exports.generateHTML = generateHTML
+exports.initCard = initCard;
