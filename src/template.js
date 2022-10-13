@@ -1,5 +1,9 @@
-const generateHTML = function () {
-    return `<!DOCTYPE html>
+const { writeFile } = require('fs').promises;
+const fs = require('fs');
+
+
+const generateHTML = ({ role, name, id, email, github, school }) =>
+    `<!DOCTYPE html>
     <html lang="en">
     <head>
       <meta charset="UTF-8">
@@ -17,8 +21,7 @@ const generateHTML = function () {
     </head>
     <body>
     </body>
-</html>`
-}
+</html>`;
 
 const initCard = function (arr) {
     //if else statement
