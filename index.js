@@ -29,6 +29,20 @@ var questions = [
 
 ]
 
+const initCard = function (answers) {
+    //if else statement
+    let role;
+
+    if (answers.role === "Manager") {
+        role = promptManager();
+    } else if (answers.role === "Engineer") {
+        role = promptEngineer();
+    } else if (answers.role === "Intern") {
+        role = promptIntern();
+    }
+}
+
+
 function init() {
     return inquirer.prompt(questions)
         .then((answers) => {
@@ -41,4 +55,6 @@ function init() {
 }
 
 init();
+
 // Bonus using writeFileSync as a promise
+

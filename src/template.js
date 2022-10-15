@@ -9,7 +9,7 @@ const generateHTML = ({ role, name, id, email, github, school }) =>
       <meta charset="UTF-8">
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-      <title>My Team</title>
+      <role>My Team</role>
       <ul class="list-group">
       <li class="list-group-item">Role: ${role}</li>
       <li class="list-group-item">Name: ${name}</li>
@@ -23,20 +23,6 @@ const generateHTML = ({ role, name, id, email, github, school }) =>
     </body>
 </html>`;
 
-const initCard = function (arr) {
-    //if else statement
-    let role;
 
-    if (arr.title === "Manager") {
-        role = `Office Number: ${arr.officenumber}`
-    } else if (arr.title === "Engineer") {
-        role = `Github: ${arr.github}`
-    } else if (arr.title === "Intern") {
-        role = `School: ${arr.school}`
-    }
-
-
-
-}
 exports.generateHTML = generateHTML
 exports.initCard = initCard;
