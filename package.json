@@ -6,12 +6,14 @@
     "scripts": {
         "start": "node index",
         "watch": "nodemon index",
-        "test": "jest"
+        "test": "jest",
+        "dev": "dev"
     },
     "author": "",
     "license": "ISC",
     "dependencies": {
         "chalk": "^2.4.1",
+        "fs": "^0.0.1-security",
         "inquirer": "^8.2.4",
         "js": "^0.1.0"
     },
