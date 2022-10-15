@@ -6,6 +6,12 @@ const promptEmployee = require('./lib/Employee');
 
 var questions = [
     {
+        type: 'checkbox',
+        name: 'role',
+        message: 'What is your role?',
+        choices: ["Manager", "Engineer", "Intern", "NONE"],
+    },
+    {
         type: 'input',
         name: 'name',
         message: 'What is the manager name?',
@@ -36,24 +42,3 @@ function init() {
 
 init();
 // Bonus using writeFileSync as a promise
-
-
-// function init() {
-//     return inquirer.promptEmployee(questions)
-//         .then((answers) => writeFile('index.html', generateHTML(answers)))
-//         .then(() => console.log('Successfully wrote to index.html'))
-//         .catch((err) => console.error(err));
-// };
-// fs.writeFile('index.html', Employee, (err) =>
-//     err ? console.log(err) : console.log('Successfully created index.html!')
-// )
-
-// init();
-
-            // const init = () => {
-             //     promptEmployee()
-
-            //         .then((answers) => writeFile('index.html', generateHTML(answers)))
-            //         .then(() => console.log('Successfully wrote to index.html'))
-            //         .catch((err) => console.error(err));
-            // };
