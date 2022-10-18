@@ -1,28 +1,53 @@
-const { writeFile } = require('fs').promises;
-const fs = require('fs');
+function promptEmployee(answers) {
+
+  return `<!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <title>My Team</title>
+    <h1>My Team</h1>
+    <div>
+    <ul class="list-Manager">
+    <li class="list-group-item">Role: ${answers.role}</li>
+    <li class="list-group-item">Name: ${answers.name}</li>
+    <li class="list-group-item">Email: ${answers.email}</li>
+    <li class="list-group-item">Id: ${answers.id}</li>
+    <li class="list-group-item">Office: ${answers.office}</li>
+    
+ 
+  </ul>
+  </div>
+  <div>
+  <ul class="list-Engineer">
+  <li class="list-group-item">Role: ${answers.role}</li>
+  <li class="list-group-item">Name: ${answers.name}</li>
+  <li class="list-group-item">Email: ${answers.email}</li>
+  <li class="list-group-item">Id: ${answers.id}</li>
+  <li class="list-group-item">GitHub: ${answers.github}</li>
+  
+
+</ul>
+</div>
+<div>
+<ul class="list-Intern">
+<li class="list-group-item">Role: ${answers.role}</li>
+<li class="list-group-item">Name: ${answers.name}</li>
+<li class="list-group-item">Email: ${answers.email}</li>
+<li class="list-group-item">Id: ${answers.id}</li>
+<li class="list-group-item">School: ${answers.school}</li>
 
 
-const generateHTML = ({ role, name, id, email, github, school }) =>
-    `<!DOCTYPE html>
-    <html lang="en">
-    <head>
-      <meta charset="UTF-8">
-      <meta http-equiv="X-UA-Compatible" content="ie=edge">
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-      <role>My Team</role>
-      <ul class="list-group">
-      <li class="list-group-item">Role: ${role}</li>
-      <li class="list-group-item">Name: ${name}</li>
-      <li class="list-group-item">Id: ${id}</li>
-      <li class="list-group-item">Email: ${email}</li>
-      <li class="list-group-item">GitHub: ${github}</li>
-      <li class="list-group-item">School: ${school}</li>
-    </ul>
-    </head>
-    <body>
-    </body>
-</html>`;
+</ul>
+</div>
+  </head>
+  <body>
+  </body>
+</html>
+`;
+}
+module.exports = promptEmployee;
 
 
-exports.generateHTML = generateHTML
-exports.initCard = initCard;
+
