@@ -4,12 +4,13 @@ const inquirer = require('inquirer');
 const fs = require('fs');
 const promptEmployee = require('./lib/Employee');
 const employeeinfo = [];
-const Engineer = require("./lib/Engineer")
-const Manager = require("./lib/Manager")
-const Intern = require("./lib/Intern")
-let currentname = ""
-let currentid = ""
-let currentemail = ""
+const Engineer = require("./lib/Engineer");
+const Manager = require("./lib/Manager");
+const Intern = require("./lib/Intern");
+let currentname = "";
+let currentid = "";
+let currentemail = "";
+let team = "";
 const template = require("./src/template");
 
 var questions = [
@@ -105,7 +106,7 @@ function init() {
             if (answers.role === "Manager") {
                 promptManager()
 
-                    .then(() => writeFile('index.html', promptManager(answers)))
+                    .then(() => writeFile('index.html', JSON.stringify(answers)))
                     .then(() => console.log('Successfully wrote to index.html'))
                     .catch((err) => console.error(err));
             } else if (answers.role === "Engineer") {

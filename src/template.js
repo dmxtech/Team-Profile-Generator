@@ -1,6 +1,6 @@
 // const index = require("./index.js")
 
-function prompttemplate(answers) {
+const generateHTML = function prompttemplate(answers) {
 
   return `<!DOCTYPE html>
   <html lang="en">
@@ -49,7 +49,7 @@ function prompttemplate(answers) {
 </html>
 `;
 }
-module.exports = prompttemplate;
+// module.exports = writefile();
 
 
 
