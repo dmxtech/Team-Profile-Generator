@@ -1,4 +1,6 @@
-function promptEmployee(answers) {
+// const index = require("./index.js")
+
+function prompttemplate(answers) {
 
   return `<!DOCTYPE html>
   <html lang="en">
@@ -47,7 +49,7 @@ function promptEmployee(answers) {
 </html>
 `;
 }
-module.exports = promptEmployee;
+module.exports = prompttemplate;
 
 
 

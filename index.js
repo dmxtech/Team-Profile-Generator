@@ -10,14 +10,10 @@ const Intern = require("./lib/Intern")
 let currentname = ""
 let currentid = ""
 let currentemail = ""
+const template = require("./src/template");
 
 var questions = [
-    {
-        type: 'list',
-        name: 'role',
-        message: 'What is your role?',
-        choices: ["Manager", "Engineer", "Intern", "NONE"],
-    },
+
     {
         type: 'input',
         name: 'name',
@@ -33,11 +29,16 @@ var questions = [
         name: 'email',
         message: 'What is the employee email?',
     },
-
+    {
+        type: 'list',
+        name: 'role',
+        message: 'What is your role?',
+        choices: ["Manager", "Engineer", "Intern", "NONE"],
+    },
 
 
 ]
-const promptManager = (employeeinfo) => {
+const promptManager = () => {
     return inquirer.prompt([
         {
             type: 'input',
@@ -47,11 +48,13 @@ const promptManager = (employeeinfo) => {
     ])
         .then((data) => {
             let newManager = new Manager(data.officenumber)
-            employeeinfo.push(newManager)
+            console.log(data);
+            employeeinfo.push(newManager);
+
             init();
         })
 };
-const promptEngineer = (employeeinfo) => {
+const promptEngineer = () => {
 
     return inquirer.prompt([
         {
@@ -61,13 +64,14 @@ const promptEngineer = (employeeinfo) => {
         },
     ])
         .then((data) => {
-            let newEngineer = new Engineer(data.github)
-            employeeinfo.push(newEngineer)
+            let newEngineer = new Engineer()
+            console.log(data);
+            employeeinfo.push(newEngineer);
             init();
         })
 };
 
-const promptIntern = (employeeinfo) => {
+const promptIntern = () => {
     return inquirer.prompt([
         {
             type: 'input',
@@ -76,26 +80,34 @@ const promptIntern = (employeeinfo) => {
         },
     ])
         .then((data) => {
-            let newIntern = new Intern(data.officenumber)
+            let newIntern = new Intern()
+            console.log(data);
             employeeinfo.push(newIntern)
             init();
         })
 };
 
 
+
+
+
+
 function init() {
     return inquirer.prompt(questions)
         .then((answers) => {
             const Employee = new promptEmployee(answers);
+
             currentname = answers.name;
             currentid = answers.id;
             currentemail = answers.email;
-            employeeinfo.push(Employee);
 
 
             if (answers.role === "Manager") {
                 promptManager()
 
+                    .then(() => writeFile('index.html', promptManager(answers)))
+                    .then(() => console.log('Successfully wrote to index.html'))
+                    .catch((err) => console.error(err));
             } else if (answers.role === "Engineer") {
                 promptEngineer()
 
@@ -103,12 +115,10 @@ function init() {
                 promptIntern()
             }
             else if (answers.role === "NONE") {
-                fs.writeFile('./dist/index.html', Employee, (err) =>
-                    err ? console.log(err) : console.log('Successfully created index.html!')
-                )
-            }
 
+            }
         });
+
 }
 
 
