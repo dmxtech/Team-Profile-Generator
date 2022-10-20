@@ -1,7 +1,9 @@
 // const index = require("./index.js")
 
-const generateHTML = function prompttemplate(answers) {
+// const Employee = require("../lib/Employee");
 
+const generateHTML = function (employeeinfo) {
+  console.log(employeeinfo);
   return `<!DOCTYPE html>
   <html lang="en">
   <head>
@@ -12,44 +14,23 @@ const generateHTML = function prompttemplate(answers) {
     <h1>My Team</h1>
     <div>
     <ul class="list-Manager">
-    <li class="list-group-item">Role: ${answers.role}</li>
-    <li class="list-group-item">Name: ${answers.name}</li>
-    <li class="list-group-item">Email: ${answers.email}</li>
-    <li class="list-group-item">Id: ${answers.id}</li>
-    <li class="list-group-item">Office: ${answers.office}</li>
+    <li class="list-group-item">Role: ${employeeinfo.role}</li>
+    <li class="list-group-item">Name: ${employeeinfo.name}</li>
+    <li class="list-group-item">Email: ${employeeinfo.email}</li>
+    <li class="list-group-item">Id: ${employeeinfo.id}</li>
+    <li class="list-group-item">Office: ${employeeinfo.office}</li>
     
  
   </ul>
   </div>
-  <div>
-  <ul class="list-Engineer">
-  <li class="list-group-item">Role: ${answers.role}</li>
-  <li class="list-group-item">Name: ${answers.name}</li>
-  <li class="list-group-item">Email: ${answers.email}</li>
-  <li class="list-group-item">Id: ${answers.id}</li>
-  <li class="list-group-item">GitHub: ${answers.github}</li>
   
-
-</ul>
-</div>
-<div>
-<ul class="list-Intern">
-<li class="list-group-item">Role: ${answers.role}</li>
-<li class="list-group-item">Name: ${answers.name}</li>
-<li class="list-group-item">Email: ${answers.email}</li>
-<li class="list-group-item">Id: ${answers.id}</li>
-<li class="list-group-item">School: ${answers.school}</li>
-
-
-</ul>
-</div>
   </head>
   <body>
   </body>
 </html>
 `;
 }
-// module.exports = writefile();
+exports.generateHTML = generateHTML
 
 
 

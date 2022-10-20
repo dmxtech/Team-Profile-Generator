@@ -37,7 +37,7 @@ var questions = [
         type: 'list',
         name: 'role',
         message: 'What is your role?',
-        choices: ["Manager", "Engineer", "Intern", "NONE"],
+        choices: ["Manager", "Engineer", "Intern", "Finish"],
     },
 
 
@@ -51,7 +51,7 @@ const promptManager = () => {
         },
     ])
         .then((data) => {
-            let newManager = new Manager(currentname, currentid, currentemail, data.officenumber);
+            let newManager = new Manager(currentname, currentid, currentemail, currentrole, data.officenumber);
             console.log(data);
             console.log(data.officenumber);
             console.log(newManager);
@@ -71,7 +71,7 @@ const promptEngineer = () => {
         },
     ])
         .then((data) => {
-            let newEngineer = new Engineer(currentname, currentid, currentemail, data.github);
+            let newEngineer = new Engineer(currentname, currentid, currentemail, currentrole, data.github);
             console.log(data);
             employeeinfo.push(newEngineer);
             init();
@@ -87,13 +87,29 @@ const promptIntern = () => {
         },
     ])
         .then((data) => {
-            let newIntern = new Intern(currentname, currentid, currentemail, data.school);
+            let newIntern = new Intern(currentname, currentid, currentemail, currentrole, data.school);
             console.log(data);
             employeeinfo.push(newIntern)
             init();
         })
 };
 
+const promptfinish = () => {
+    return inquirer.prompt([
+        {
+            type: 'list',
+            name: 'finish',
+            message: 'do you want to finish?',
+            choices: ["Yes", "No"],
+        },
+    ])
+
+    // .then((data) => {
+    //     let newIntern = new Intern(currentname, currentid, currentemail, data.school);
+    //     console.log(data);
+    //     employeeinfo.push(newIntern)
+    //     init();
+}
 
 
 
@@ -111,32 +127,44 @@ function init() {
             currentoffice = answers.officenumber;
             currentgithub = answers.github;
             currentschool = answers.school;
+            currentrole = answers.role;
 
             if (answers.role === "Manager") {
                 promptManager()
 
-                    .then(() => writeFile('index.html', JSON.stringify(answers)))
-                    .then(() => console.log('Successfully wrote to index.html'))
-                    .catch((err) => console.error(err));
+                // .then(() => writeFile('index.html', JSON.stringify(employeeinfo)))
+
+                // .then(() => console.log('Successfully wrote to index.html'))
+                // .catch((err) => console.error(err));
             } else if (answers.role === "Engineer") {
                 promptEngineer()
-                    .then(() => writeFile('index.html', JSON.stringify(answers)))
-                    .then(() => console.log('Successfully wrote to index.html'))
-                    .catch((err) => console.error(err));
+                // .then(() => writeFile('index.html', JSON.stringify(employeeinfo)))
+                // .then(() => console.log('Successfully wrote to index.html'))
+                // .catch((err) => console.error(err));
             } else if (answers.role === "Intern") {
                 promptIntern()
-                    .then(() => writeFile('index.html', JSON.stringify(answers)))
+                // .then(() => writeFile('index.html', JSON.stringify(employeeinfo)))
+                // .then(() => console.log('Successfully wrote to index.html'))
+                // .catch((err) => console.error(err));
+            } else if (answers.role === "Finish") {
+                promptfinish()
+                    .then(() => writeFile('index.html', JSON.stringify(employeeinfo)))
                     .then(() => console.log('Successfully wrote to index.html'))
                     .catch((err) => console.error(err));
-            } else if (answers.role === "NONE") {
-
             }
+            let finalhtml = template.generateHTML(employeeinfo)
+            writeFile("index.html", finalhtml)
+                .then(() => console.log('Successfully wrote to index.html'))
+                .catch((err) => console.error(err));
         });
 
-}
+} while (promptfinish.finish === "Yes");
+
 
 
 init();
 
 // Bonus using writeFileSync as a promise
 
+//TODO connect to template so it shows a nice html
+//promt finish no=>continue
