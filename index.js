@@ -10,7 +10,10 @@ const Intern = require("./lib/Intern");
 let currentname = "";
 let currentid = "";
 let currentemail = "";
-let team = "";
+// let currentoffice = "";
+// let currentgithub = "";
+// let currentschool = "";
+// let team = "";
 const template = require("./src/template");
 
 var questions = [
@@ -54,7 +57,7 @@ const promptManager = () => {
             console.log(newManager);
             console.log(employeeinfo);
             employeeinfo.push(newManager);
-
+            // const currentoffice = newManager;
             init();
         })
 };
@@ -100,13 +103,14 @@ function init() {
     return inquirer.prompt(questions)
         .then((answers) => {
             console.log(answers);
-            console.log(newManager);
-            const Employee = new promptManager(answers);
+            const Employee = new promptEmployee(answers);
 
             currentname = answers.name;
             currentid = answers.id;
             currentemail = answers.email;
-
+            currentoffice = answers.officenumber;
+            currentgithub = answers.github;
+            currentschool = answers.school;
 
             if (answers.role === "Manager") {
                 promptManager()
