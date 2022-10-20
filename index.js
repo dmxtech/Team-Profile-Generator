@@ -48,8 +48,11 @@ const promptManager = () => {
         },
     ])
         .then((data) => {
-            let newManager = new Manager(data.officenumber)
+            let newManager = new Manager(currentname, currentid, currentemail, data.officenumber);
             console.log(data);
+            console.log(data.officenumber);
+            console.log(newManager);
+            console.log(employeeinfo);
             employeeinfo.push(newManager);
 
             init();
@@ -65,7 +68,7 @@ const promptEngineer = () => {
         },
     ])
         .then((data) => {
-            let newEngineer = new Engineer()
+            let newEngineer = new Engineer(currentname, currentid, currentemail, data.github);
             console.log(data);
             employeeinfo.push(newEngineer);
             init();
@@ -81,7 +84,7 @@ const promptIntern = () => {
         },
     ])
         .then((data) => {
-            let newIntern = new Intern()
+            let newIntern = new Intern(currentname, currentid, currentemail, data.school);
             console.log(data);
             employeeinfo.push(newIntern)
             init();
@@ -96,7 +99,9 @@ const promptIntern = () => {
 function init() {
     return inquirer.prompt(questions)
         .then((answers) => {
-            const Employee = new promptEmployee(answers);
+            console.log(answers);
+            console.log(newManager);
+            const Employee = new promptManager(answers);
 
             currentname = answers.name;
             currentid = answers.id;
@@ -111,11 +116,15 @@ function init() {
                     .catch((err) => console.error(err));
             } else if (answers.role === "Engineer") {
                 promptEngineer()
-
+                    .then(() => writeFile('index.html', JSON.stringify(answers)))
+                    .then(() => console.log('Successfully wrote to index.html'))
+                    .catch((err) => console.error(err));
             } else if (answers.role === "Intern") {
                 promptIntern()
-            }
-            else if (answers.role === "NONE") {
+                    .then(() => writeFile('index.html', JSON.stringify(answers)))
+                    .then(() => console.log('Successfully wrote to index.html'))
+                    .catch((err) => console.error(err));
+            } else if (answers.role === "NONE") {
 
             }
         });
