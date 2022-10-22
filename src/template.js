@@ -4,7 +4,7 @@
 
 
 // const Employee = require("../lib/Employee");
-
+// function to generate html
 const generateHTML = function (getteam) {
   console.log("my print", getteam);
   return `<!DOCTYPE html>
@@ -16,6 +16,7 @@ const generateHTML = function (getteam) {
     <title>My Team</title>
     <h1>My Team</h1>
     <div>
+    ${getteam}
     <ul class="list-Manager">
     <li class="list-group-item">Role: ${getteam.role}</li>
     <li class="list-group-item">Name: ${getteam.Managername}</li>

@@ -1,4 +1,12 @@
+// let currentname = "";
+// let currentid = "";
+// let currentemail = "";
+// let currentoffice = "";
+// let currentgithub = "";
+// let currentschool = "";
+// let team = "";
 
+//Declare variables
 const { writeFile } = require('fs').promises;
 const inquirer = require('inquirer');
 const fs = require('fs');
@@ -7,17 +15,11 @@ const employeeinfo = [];
 const Engineer = require("./lib/Engineer");
 const Manager = require("./lib/Manager");
 const Intern = require("./lib/Intern");
-const getteam = employeeinfo;
-// let currentname = "";
-// let currentid = "";
-// let currentemail = "";
-// let currentoffice = "";
-// let currentgithub = "";
-// let currentschool = "";
-// let team = "";
+const getteam = JSON.stringify(employeeinfo);
+
 const template = require("./src/template");
 const { default: Choices } = require('inquirer/lib/objects/choices');
-
+//App start & set first prompt to select type of employee
 function initEmployee() {
     return inquirer.prompt([
 
@@ -38,16 +40,16 @@ function initEmployee() {
             
             if (role === "Manager") {
                 promptManager()
-                getteam.push(answers);
-        //         console.log("role",role);
+                employeeinfo.push(answers);
+                 console.log("team",getteam);
         //    console.log("ansr",answers.role);
         //    console.log("answ",answers);
             } else if (role === "Engineer") {
                 promptEngineer()
-                getteam.push(answers);
+                employeeinfo.push(answers);
             } else if (role === "Intern") {
                 promptIntern()
-                getteam.push(role);
+                employeeinfo.push(role);
             } else if (role === "Finish") {
                 promptfinish()
                     .then(() => writeFile('./dist/index.html', finalhtml))
@@ -55,7 +57,7 @@ function initEmployee() {
                     .catch((err) => console.error(err));
             }
             
-
+//function that starts the prompt manager
             function promptManager() {
                 return inquirer.prompt([
                     {
@@ -92,12 +94,14 @@ function initEmployee() {
                         console.log("newManager", newManager);
                         // console.log("employeeinfo", employeeinfo);
                         
-                        getteam.push(data);
-                        console.log("getteam", getteam);
+                        //push data into array
+                        employeeinfo.push(data);
+                        console.log("employeeinfo", employeeinfo);
                         // const currentoffice = newManager;
                         initEmployee()
                     })
             };
+            // start promt for engineer
             function promptEngineer() {
 
                 inquirer.prompt([
@@ -131,11 +135,12 @@ function initEmployee() {
                             data.github
                             );
                         console.log(newEngineer);
-                        getteam.push(newEngineer);
+                        //push data into main array
+                        employeeinfo.push(newEngineer);
                         initEmployee();
                     })
             };
-
+// start intern prompt 
             function promptIntern() {
                 return inquirer.prompt([
                     {
@@ -167,11 +172,12 @@ function initEmployee() {
                             data.Internemail, 
                             data.school);
                         console.log(newIntern);
-                        getteam.push(newIntern)
+                        // push new intern into main array
+                        employeeinfo.push(newIntern)
                         initEmployee();
                     })
             };
-
+// function to start finsh prompt
             function promptfinish() {
                 return inquirer.prompt([
                     {
