@@ -15,7 +15,7 @@ const employeeinfo = [];
 const Engineer = require("./lib/Engineer");
 const Manager = require("./lib/Manager");
 const Intern = require("./lib/Intern");
-const getteam = JSON.stringify(employeeinfo);
+// const getteam = JSON.stringify(employeeinfo);
 
 const template = require("./src/template");
 const { default: Choices } = require('inquirer/lib/objects/choices');
@@ -34,28 +34,33 @@ function initEmployee() {
     ])
         .then((answers) => {
             
-            let finalhtml = template.generateHTML(getteam)
+            
            
             let role = (answers.role);
             
             if (role === "Manager") {
                 promptManager()
-                employeeinfo.push(answers);
-                 console.log("team",getteam);
+                
+                 console.log("team",employeeinfo);
         //    console.log("ansr",answers.role);
         //    console.log("answ",answers);
             } else if (role === "Engineer") {
                 promptEngineer()
-                employeeinfo.push(answers);
+                
             } else if (role === "Intern") {
                 promptIntern()
-                employeeinfo.push(role);
+                
+
             } else if (role === "Finish") {
-                promptfinish()
-                    .then(() => writeFile('./dist/index.html', finalhtml))
-                    .then(() => console.log('Successfully wrote to index.html'))
-                    .catch((err) => console.error(err));
+                let finalhtml = template.generateHTML(employeeinfo)
+                writeFile('./dist/index.html', finalhtml)
+                .then(() => console.log('Successfully wrote to index.html'))
             }
+            //     promptfinish()
+            //         .then(() => writeFile('./dist/index.html', finalhtml))
+            //         .then(() => console.log('Successfully wrote to index.html'))
+            //         .catch((err) => console.error(err));
+            // }
             
 //function that starts the prompt manager
             function promptManager() {
@@ -95,7 +100,7 @@ function initEmployee() {
                         // console.log("employeeinfo", employeeinfo);
                         
                         //push data into array
-                        employeeinfo.push(data);
+                        employeeinfo.push(newManager);
                         console.log("employeeinfo", employeeinfo);
                         // const currentoffice = newManager;
                         initEmployee()
@@ -173,7 +178,7 @@ function initEmployee() {
                             data.school);
                         console.log(newIntern);
                         // push new intern into main array
-                        employeeinfo.push(newIntern)
+                        employeeinfo.push(newIntern);
                         initEmployee();
                     })
             };
