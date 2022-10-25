@@ -9,7 +9,7 @@ const generateHTML = function (getteam) {
   console.log("getteam", getteam);
   let templatelist = [];
   for (i = 0; i < getteam.length; i++) {
-    console.log("my print", getteam[i].getRole());
+    console.log("my print", getteam[i]);
     if (getteam[i].getRole() === "Manager") {
       templatelist.push(
         `
@@ -31,7 +31,7 @@ const generateHTML = function (getteam) {
         <li class="list-group-item">Name: ${getteam[i].name}</li>
         <li class="list-group-item">Email: (mailito:${getteam[i].email})</li>
         <li class="list-group-item">Id: ${getteam[i].id}</li>
-        <li href= https://github.com/${getteam[i].github} class="list-group-item">Github: https://github.com/${getteam.github}</li>
+        <li href= https://github.com/${getteam[i].github} class="list-group-item">Github: https://github.com/${getteam[i].github}</li>
       </ul>
       `
       )
@@ -44,7 +44,7 @@ const generateHTML = function (getteam) {
         <li class="list-group-item">Name: ${getteam[i].name}</li>
         <li class="list-group-item">Email: (mailito:${getteam[i].email})</li>
         <li class="list-group-item">Id: ${getteam[i].id}</li>
-        <li href= https://github.com/${getteam[i].github} class="list-group-item">Github: https://github.com/${getteam.github}</li>
+        <li class="list-group-item">School: ${getteam[i].school}</li>
         
      
       </ul>`
