@@ -1,11 +1,3 @@
-// let currentname = "";
-// let currentid = "";
-// let currentemail = "";
-// let currentoffice = "";
-// let currentgithub = "";
-// let currentschool = "";
-// let team = "";
-
 //Declare variables
 const { writeFile } = require('fs').promises;
 const inquirer = require('inquirer');
@@ -15,7 +7,7 @@ const employeeinfo = [];
 const Engineer = require("./lib/Engineer");
 const Manager = require("./lib/Manager");
 const Intern = require("./lib/Intern");
-// const getteam = JSON.stringify(employeeinfo);
+
 
 const template = require("./src/template");
 const { default: Choices } = require('inquirer/lib/objects/choices');
@@ -41,9 +33,8 @@ function initEmployee() {
             if (role === "Manager") {
                 promptManager()
                 
-                 console.log("team",employeeinfo);
-        //    console.log("ansr",answers.role);
-        //    console.log("answ",answers);
+                // console.log("team",employeeinfo);
+    
             } else if (role === "Engineer") {
                 promptEngineer()
                 
@@ -56,12 +47,7 @@ function initEmployee() {
                 writeFile('./dist/index.html', finalhtml)
                 .then(() => console.log('Successfully wrote to index.html'))
             }
-            //     promptfinish()
-            //         .then(() => writeFile('./dist/index.html', finalhtml))
-            //         .then(() => console.log('Successfully wrote to index.html'))
-            //         .catch((err) => console.error(err));
-            // }
-            
+           
 //function that starts the prompt manager
             function promptManager() {
                 return inquirer.prompt([
@@ -94,19 +80,17 @@ function initEmployee() {
                             data.Manageremail, 
                             data.officenumber
                             );
-                        // console.log("data", data);
-                        // console.log("data.officenumber", data.officenumber);
+                
                         console.log("newManager", newManager);
-                        // console.log("employeeinfo", employeeinfo);
                         
-                        //push data into array
+ //push data into array
                         employeeinfo.push(newManager);
                         console.log("employeeinfo", employeeinfo);
-                        // const currentoffice = newManager;
+                       
                         initEmployee()
                     })
             };
-            // start promt for engineer
+ // start promt for engineer
             function promptEngineer() {
 
                 inquirer.prompt([
@@ -140,7 +124,7 @@ function initEmployee() {
                             data.github
                             );
                         console.log(newEngineer);
-                        //push data into main array
+ //push data into main array
                         employeeinfo.push(newEngineer);
                         initEmployee();
                     })
@@ -177,7 +161,7 @@ function initEmployee() {
                             data.Internemail, 
                             data.school);
                         console.log(newIntern);
-                        // push new intern into main array
+ // push new intern into main array
                         employeeinfo.push(newIntern);
                         initEmployee();
                     })
@@ -196,11 +180,37 @@ function initEmployee() {
                
             }
         }
-        // fs.writeFileSync('./dist/index.html', template(employeeinfo));
+        
         )
     
 };
 initEmployee();
+
+
+
+
+
+
+
+
+
+
+
+
+ //     promptfinish()
+            //         .then(() => writeFile('./dist/index.html', finalhtml))
+            //         .then(() => console.log('Successfully wrote to index.html'))
+            //         .catch((err) => console.error(err));
+            // }
+
+// fs.writeFileSync('./dist/index.html', template(employeeinfo));
+// let currentname = "";
+// let currentid = "";
+// let currentemail = "";
+// let currentoffice = "";
+// let currentgithub = "";
+// let currentschool = "";
+// let team = "";
 
 
   // .then(() => writeFile('index.html', JSON.stringify(employeeinfo)))

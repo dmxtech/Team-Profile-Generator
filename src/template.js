@@ -1,54 +1,53 @@
-// const index = require("./index.js")
-
-// const Manager = require("../lib/Manager");
-
-
-// const Employee = require("../lib/Employee");
 // function to generate html
 const generateHTML = function (getteam) {
   console.log("getteam", getteam);
   let templatelist = [];
   for (i = 0; i < getteam.length; i++) {
     console.log("my print", getteam[i]);
+    console.log("templatelist0", templatelist);
     if (getteam[i].getRole() === "Manager") {
       templatelist.push(
         `
         <ul class="list-Manager">
           <li class="list-group-item">Role: ${getteam[i].role}</li>
           <li class="list-group-item">Name: ${getteam[i].name}</li>
-          <li class="list-group-item">Email: (mailito ${getteam[i].email})</li>
+          <li class="list-group-item" href = "mailto: ${getteam[i].email}">Email:  ${getteam[i].email}</li>
           <li class="list-group-item">Id: ${getteam[i].id}</li>
           <li class="list-group-item">Office: ${getteam[i].officenumber}</li>
         </ul>
         `
       )
-    }
-    if (getteam[i].getRole() === "Engineer") {
-      templatelist.push(
-        `
-        <ul class="list-Manager">
-        <li class="list-group-item">Role: ${getteam[i].role}</li>
-        <li class="list-group-item">Name: ${getteam[i].name}</li>
-        <li class="list-group-item">Email: (mailito:${getteam[i].email})</li>
-        <li class="list-group-item">Id: ${getteam[i].id}</li>
-        <li href= https://github.com/${getteam[i].github} class="list-group-item">Github: https://github.com/${getteam[i].github}</li>
+      console.log("my print1", getteam[i]);
+      console.log("templatelist1", templatelist);
+      if (getteam[1].getRole() === "Engineer") {
+        templatelist.push(
+          `
+        <ul class="list-Engineer">
+        <li class="list-group-item">Role: ${getteam[1].role}</li>
+        <li class="list-group-item">Name: ${getteam[1].name}</li>
+        <li class="list-group-item"href = "mailto: ${getteam[1].email}">Email: ${getteam[1].email}</li>
+        <li class="list-group-item">Id: ${getteam[1].id}</li>
+        <li href= https://github.com/${getteam[1].github} class="list-group-item">Github: https://github.com/${getteam[1].github}</li>
       </ul>
       `
-      )
-    }
-    if (getteam[i].getRole() === "Intern") {
-      templatelist.push(
+        )
+        console.log("templatelist2", templatelist);
+        console.log(templatelist);
+        if (getteam[2].getRole() === "Intern") {
+          templatelist.push(
+            `
+        <ul class="list-Intern">
+        <li class="list-group-item">Role: ${getteam[2].role}</li>
+        <li class="list-group-item">Name: ${getteam[2].name}</li>
+        <li class="list-group-item" href = "mailto: ${getteam[2].email}">Email:${getteam[2].email}</li>
+        <li class="list-group-item">Id: ${getteam[2].id}</li>
+        <li class="list-group-item">School: ${getteam[2].school}</li>
+        </ul>
         `
-        <ul class="list-Manager">
-        <li class="list-group-item">Role: ${getteam[i].role}</li>
-        <li class="list-group-item">Name: ${getteam[i].name}</li>
-        <li class="list-group-item">Email: (mailito:${getteam[i].email})</li>
-        <li class="list-group-item">Id: ${getteam[i].id}</li>
-        <li class="list-group-item">School: ${getteam[i].school}</li>
-        
-     
-      </ul>`
-      )
+          )
+          console.log("templatelist3", templatelist);
+        }
+      }
     }
     console.log("templatelist", templatelist);
     return `
