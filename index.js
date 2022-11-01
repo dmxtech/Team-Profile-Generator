@@ -81,11 +81,11 @@ function initEmployee() {
                             data.officenumber
                             );
                 
-                        console.log("newManager", newManager);
+                       
                         
  //push data into array
                         employeeinfo.push(newManager);
-                        console.log("employeeinfo", employeeinfo);
+                       
                        
                         initEmployee()
                     })
@@ -123,7 +123,7 @@ function initEmployee() {
                             data.Engineeremail, 
                             data.github
                             );
-                        console.log(newEngineer);
+                        
  //push data into main array
                         employeeinfo.push(newEngineer);
                         initEmployee();
@@ -160,7 +160,7 @@ function initEmployee() {
                             data.Internid, 
                             data.Internemail, 
                             data.school);
-                        console.log(newIntern);
+                       
  // push new intern into main array
                         employeeinfo.push(newIntern);
                         initEmployee();
